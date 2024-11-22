@@ -1,6 +1,7 @@
 package com.i2i.ems.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -16,6 +17,10 @@ public class DepartmentService {
     private DepartmentDao departmentDao = new DepartmentDao();
     private static Logger logger = LogManager.getLogger(DepartmentService.class);
 
+    private String generateIdForDepartment() {
+        return "DEPT" + Util.generateShortId();
+    }
+
     public boolean isDepartmentAvailable(String id) throws EmployeeManagementException {
         logger.debug("Enterd into method: isDepartmentAvailable to check if id: {} exists or not", id);
         boolean result = departmentDao.isDepartmentAvailable(id.toUpperCase());
@@ -25,7 +30,7 @@ public class DepartmentService {
 
     public Department createDepartment(String name) throws EmployeeManagementException {
         logger.debug("Entered into createDepartment to create a department with name: {}", name);
-        String id = Util.generateIdForDepartment();
+        String id = generateIdForDepartment();
         Department department = new Department();
         department.setId(id);
         department.setName(name);
@@ -37,5 +42,9 @@ public class DepartmentService {
 
     public Department getDepartmentWithId(String id) throws EmployeeManagementException {
         return departmentDao.getDepartmentWithId(id.toUpperCase());
+    }
+
+    public List<Department> getAllDepartments() throws EmployeeManagementException {
+        return departmentDao.getAllDepartments();
     }
 }

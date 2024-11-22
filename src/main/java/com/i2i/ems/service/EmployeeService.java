@@ -21,11 +21,15 @@ public class EmployeeService {
     private static EmployeeDao employeeDao = new EmployeeDao();
     private static Logger logger = LogManager.getLogger(EmployeeService.class);
 
+    private String generateIdForEmployee() {
+        return "I2I" + Util.generateShortId();
+    }
+
     public Employee addEmployee(String name, String email, String doj, String role, String[] addr, Department department)
                      throws EmployeeManagementException {
         logger.debug("Entered into addEmployee to add new Employee to the record with name: {}, under department: {}", name, department);
         Employee employee = new Employee();
-        String id = Util.generateIdForEmployee();
+        String id = generateIdForEmployee();
         employee.setId(id);
         employee.setName(name);
         employee.setEmail(email);

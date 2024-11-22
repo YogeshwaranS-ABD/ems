@@ -18,10 +18,14 @@ public class CertificationService {
     private CertificationDao certificationDao = new CertificationDao();
     private static Logger logger = LogManager.getLogger(CertificationService.class);
 
+    private String generateIdForCertification() {
+        return "CERT" + Util.generateLongId();
+    }
+
     public Certification createCertification(String name, String provider, String expiryDate, String level, Employee employee)
                             throws EmployeeManagementException {
         logger.debug("Entered into createCertification to create new Certification for employee: {}", employee.getNameWithId());
-        String id = Util.generateIdForCertification();
+        String id = generateIdForCertification();
         Certification certificate = new Certification(id, name, provider, expiryDate, level, employee);
         certificationDao.addCertification(certificate);
         logger.info("Certification with id: {} for Employee: {} was created successfully", id, employee.getNameWithId());

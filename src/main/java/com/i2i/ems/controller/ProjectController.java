@@ -69,7 +69,7 @@ public class ProjectController {
     private static void printAllProjects() {
         List<Project> projects = projectService.getAllProjects();
         for(Project project: projects) {
-            System.out.println(project.getId() + " - " + project.getName());
+            System.out.println(project.getNameWithId());
         }
         logger.info("List of all projects displayed successfully");
     }

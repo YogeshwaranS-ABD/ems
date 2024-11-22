@@ -101,6 +101,11 @@ public class Department {
         return this.isDeleted;
     }
 */
+
+    public String getNameWithId() {
+        return this.getId() + " - " + this.getName();
+    }
+
     public String toString() {
         return "Department Name: " + this.name
                 + "\nDepartment ID: " + this.id

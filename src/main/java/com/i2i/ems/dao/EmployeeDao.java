@@ -32,17 +32,17 @@ public class EmployeeDao {
                             .setParameter("id", id)
                             .getSingleResult();
             if (state) {
-                logger.warn("Employee with ID: {} exists in the record but marked as removed. Returning false", id);
+                logger.warn("Employee with ID: {} exists in the record but marked as removed. Throwing FormerEmployeeCannotBeRead Exception", id);
                 throw new FormerEmployeeCannotBeRead("Details of Former Employee cannot be read");
             }
             logger.info("Employee matched with ID: {}, returning true", id);
             return true;
-        } catch (HibernateException e) {
-            logger.error("Error in Hibernate while searching for ID: {}", id);
-            throw new EmployeeManagementException("Error occured while checking the given ID already exists or not: " + id, e);
         } catch (NoResultException e) {
             logger.error("Employee with ID: {} does not exists in the record", id);
             throw new NoSuchEmployeeException("No Employee Found in the record with ID: " + id, e);
+        } catch (HibernateException e) {
+            logger.error("Error in Hibernate while searching for ID: {}", id);
+            throw new EmployeeManagementException("Error occured while checking the given ID already exists or not: " + id, e);
         }
     }
 

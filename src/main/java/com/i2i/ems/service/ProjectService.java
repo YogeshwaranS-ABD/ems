@@ -16,9 +16,13 @@ public class ProjectService {
     private static Logger logger = LogManager.getLogger(ProjectService.class);
     private ProjectDao projectDao = new ProjectDao();
 
+    private String generateIdForProject() {
+        return "PROJ" + Util.generateShortId();
+    }
+
     public String createProject(String name, String status, String techUsed) throws EmployeeManagementException {
         logger.debug("Entered into createProject to create a new project");
-        String id = Util.generateIdForProject();
+        String id = generateIdForProject();
         Project project = new Project();
         project.setId(id);
         project.setName(name);

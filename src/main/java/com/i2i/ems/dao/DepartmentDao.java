@@ -1,5 +1,8 @@
 package com.i2i.ems.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.NoResultException;
 
 import org.hibernate.Hibernate;
@@ -61,7 +64,7 @@ public class DepartmentDao {
         }
     }
 
-/*    public List<Department> getAllDepartments() throws EmployeeManagementException {
+    public List<Department> getAllDepartments() throws EmployeeManagementException {
         List<Department> departments = new ArrayList<Department>();
         try (Session session = HibernateConnection.getSessionFactory().openSession()) {
             departments = session.createQuery("from Department", Department.class).list();
@@ -71,7 +74,7 @@ public class DepartmentDao {
         }
     }
 
-    public void removeDepartmentWithId(String id) {
+/*    public void removeDepartmentWithId(String id) {
         try (Session session = HibernateConnection.getSessionFactory().openSession()) {
             session.beginTransaction();
             Department department = session.get(Department.class, id);
@@ -80,5 +83,5 @@ public class DepartmentDao {
         } catch (HibernateException e) {
             throw new EmployeeManagementException("Error occured while removing department with id: " + id, e);
         }
-    } */
+    }*/ 
 }

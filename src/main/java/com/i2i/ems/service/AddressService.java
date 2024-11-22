@@ -16,10 +16,14 @@ public class AddressService {
     private static AddressDao addressDao = new AddressDao();
     private static Logger logger = LogManager.getLogger(AddressService.class);
 
+    private String generateIdForAddress() {
+        return "ADDR" + Util.generateLongId();
+    }
+
     public Address createAddress(String[] addr, Employee employee)
                      throws EmployeeManagementException {
         logger.debug("Entered into createAddress to create new address");
-        String id = Util.generateIdForAddress();
+        String id = generateIdForAddress();
         Address address = new Address();
         address.setId(id);
         address.setDoorNo(addr[0]);

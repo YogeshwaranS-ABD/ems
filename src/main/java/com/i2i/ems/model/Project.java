@@ -126,6 +126,10 @@ public class Project implements Comparable<Project> {
         return this.isDeleted;
     }
 
+    public String getNameWithId() {
+        return this.getId() + " - " + this.getName();
+    }
+
     public String toString() {
         return "Project Name : " + this.name
                 + "\nProject ID: " + this.id
